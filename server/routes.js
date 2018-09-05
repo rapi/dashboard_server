@@ -14,24 +14,23 @@ module.exports = function(app) {
   upload = multer({storage: storage});
 
   //************************************
-  //**************PROVIDERS***************
-  //************************************
-
-  //Find Symbol in all providers
-  // router.get('/providers/search/:symbol', function(req, res) {
-  //   app.controllers['Providers']._searchSymbol(req, res)
-  // })
-
-
-
-  //************************************
   //**************IMG***************
   //************************************
 
-      //Get symbols
-      router.post('/img', upload.single('logo'), function(req, res) {
-        app.controllers['Img']._save(req, res)
-      })
+  //Get symbols
+  router.post('/img', upload.single('logo'), function(req, res) {
+    app.controllers['Img']._save(req, res)
+  })
+
+
+  //************************************
+  //**************CRYPTO***************
+  //************************************
+
+  //Get symbols
+  router.get('/crypto/history/:from/:to', function(req, res) {
+    app.controllers['Crypto']._getHistory(req, res)
+  })
   //************************************
   //**************SYMBOLS***************
   //************************************
@@ -41,26 +40,34 @@ module.exports = function(app) {
   //   app.controllers['Symbols']._get(req, res)
   // })
   //
-  // //Upload logo
+  // Upload logo
   // router.post('/symbols/logo', upload.single('logo'), function(req, res) {
   //   app.controllers['Symbols']._upload_logo(req, res)
   //
   // })
   //
-  // //Add
+  // Add
   // router.post('/symbols', function(req, res) {
   //   app.controllers['Symbols']._add(req, res)
   // })
   //
-  // //Update
+  // Update
   // router.post('/symbols/:id', function(req, res) {
   //   app.controllers['Symbols']._update(req, res)
   // })
   //
-  // //Delete
+  // Delete
   // router.delete('/symbols/:id', function(req, res) {
   //   app.controllers['Symbols']._delete(req, res)
   // })
 
+  //************************************
+  //**************PROVIDERS***************
+  //************************************
+
+  //Find Symbol in all providers
+  // router.get('/providers/search/:symbol', function(req, res) {
+  //   app.controllers['Providers']._searchSymbol(req, res)
+  // })
   return router
 }
