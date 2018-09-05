@@ -1,0 +1,28 @@
+{
+  "name": "dashboard_server",
+  "version": "0.0.1",
+  "description": "dashboard_server",
+  "private": false,
+  "main": "dist/index.js",
+  "dependencies": {
+    "alphavantage": "^1.1.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "fs-extra": "^7.0.0",
+    "mongoose": "^5.2.13",
+    "multer": "^1.3.1",
+    "node-fetch": "^2.2.0",
+    "nodemon": "^1.18.4",
+    "require-all": "^3.0.0"
+  },
+  "scripts": {
+    "server": "nodemon server/index.js",
+    "test": "mocha server/test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rapi/dashboard_server.git"
+  },
+  "keywords": [],
+  "license": "MIT"
+}
