@@ -20,7 +20,7 @@
   },
   "scripts": {
     "server": "nodemon server/index.js",
-    "test": "mocha server/test/index.js"
+    "test": "mocha server/test/index.js --timeout 150000"
   },
   "repository": {
     "type": "git",

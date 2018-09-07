@@ -22,7 +22,6 @@ module.exports = function(app) {
     app.controllers['Img']._save(req, res)
   })
 
-
   //************************************
   //**************CRYPTO***************
   //************************************
@@ -31,6 +30,18 @@ module.exports = function(app) {
   router.get('/crypto/history/:from/:to', function(req, res) {
     app.controllers['Crypto']._getHistory(req, res)
   })
+
+  //Get symbols
+  router.get('/crypto/:from/:to', function(req, res) {
+    app.controllers['Crypto']._getPair(req, res)
+  })
+
+  //Get symbols
+  router.get('/crypto/', function(req, res) {
+    app.controllers['Crypto']._list(req, res)
+  })
+
+
   //************************************
   //**************SYMBOLS***************
   //************************************
