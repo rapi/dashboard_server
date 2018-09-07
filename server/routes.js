@@ -36,6 +36,11 @@ module.exports = function(app) {
     app.controllers['Crypto']._getPair(req, res)
   })
 
+  //Get symbols
+  router.get('/crypto/', function(req, res) {
+    app.controllers['Crypto']._list(req, res)
+  })
+
 
   //************************************
   //**************SYMBOLS***************

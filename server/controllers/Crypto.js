@@ -9,6 +9,13 @@ module.exports = class Symbols {
     this.filter = {}
   }
   //get symbols
+  _list(req,res){
+    this.app.models.cryptoPairs.find().skip(12*req.query.page).limit(12).exec(function(err,record){
+      if(err)res.status(500).send({err:'Pair canot be found'})
+      else if(record===null)res.status(404).send({err:'Pair canot be found'})
+      else res.status(200).send(record)
+    })
+  }
   _getPair(req,res){
     this.app.models.cryptoPairs.findOne({
       from:req.params.from,
