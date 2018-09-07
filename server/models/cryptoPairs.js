@@ -17,7 +17,10 @@ cryptoSchema = new mongoose.Schema({
 cryptoSchema.methods.updateDailyTicks = function(app) {
   return app.providers.cryptoHistory[this.providers[0]].daily(this.from,this.to)
     .then((e)=>{
+      console.log(e.length);
+      if(e.length===0)return this;
       this.dailyHistory=e;
+      this.lastDailyUpdate=new Date();
       this.save()
       return this;
     })
