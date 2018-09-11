@@ -4,6 +4,12 @@ var chai = require('chai'),
   fs = require('fs');
   mongoose = require('mongoose');
   app = require('../index.js')
+env={}
+process.argv.forEach(function (val, index, array) {
+  if(val.indexOf('--')===0)
+  env[val.split('=')[0].replace('--','')]=val.split('=')[1]
+});
+console.log(env)
 describe('Full test', function() {
   it('Start test', (e) => {
     e()
@@ -17,7 +23,8 @@ describe('Full test', function() {
     done()
   });
   fs.readdirSync(__dirname).forEach(module => {
-    //check if is Directory
+    if(env.module && env.module===module )
+    // check if is Directory
     if (fs.existsSync(__dirname + '/' + module + '/index.js')) {
       modules = require(__dirname + '/' + module + '/index.js');
       describe('Test ' + module + ':', function() {

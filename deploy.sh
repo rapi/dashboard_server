@@ -1,1 +1,1 @@
-rsync -r ./ rapi@rapi.md:dashboard_server/;
+rsync -r --exclude .git/ --exclude .env ./ rapi@rapi.md:dashboard_server/;
