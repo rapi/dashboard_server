@@ -43,14 +43,14 @@ module.exports = function(app) {
 
 
   //************************************
-  //**************SYMBOLS***************
+  //**************STOCKS***************
   //************************************
 
-  //Get symbols
-  // router.get('/symbols/:name*?', function(req, res) {
-  //   app.controllers['Symbols']._get(req, res)
-  // })
-  //
+  // Get stocks
+  router.get('/stock/', function(req, res) {
+    app.controllers['Stock']._list(req, res)
+  })
+
   // Upload logo
   // router.post('/symbols/logo', upload.single('logo'), function(req, res) {
   //   app.controllers['Symbols']._upload_logo(req, res)

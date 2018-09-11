@@ -2,8 +2,7 @@ var mongoose = require('mongoose');
 symbolsSchema = new mongoose.Schema({
   name: String,
   desc: String,
-  logo: [String],
-  category: String,
+  logo: String,
   providers: [String],
   lastDailyUpdate: Date,
   dailyHistory: [{
@@ -16,7 +15,7 @@ symbolsSchema = new mongoose.Schema({
   }]
 });
 symbolsSchema.methods.updateDailyTicks = function(app) {
-  return app.providers.history[this.providers[0]].daily(this.name)
+  return app.providers.stockHistory[this.providers[0]].daily(this.name)
     .then((e)=>{
       this.dailyHistory=e;
       this.lastDailyUpdate=new Date();
@@ -24,5 +23,5 @@ symbolsSchema.methods.updateDailyTicks = function(app) {
       return this;
     })
 }
-Symbols = mongoose.model('Symbol', symbolsSchema);
+Symbols = mongoose.model('Stock', symbolsSchema);
 module.exports = Symbols
