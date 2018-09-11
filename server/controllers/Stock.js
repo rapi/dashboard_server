@@ -19,7 +19,7 @@ module.exports = class Symbols {
   }
   //get symbols
   _list(req,res){
-    this.app.models.stock.find({},this.selectFields).skip(12*req.query.page).limit(12).exec(function(err,record){
+    this.app.models.stock.find({'dailyHistory.1':{ $exists:true} },this.selectFields).skip(12*req.query.page).limit(12).exec(function(err,record){
       if(err)res.status(500).send({err:'Pair canot be found'})
       else if(record===null)res.status(404).send({err:'Pair canot be found'})
       else res.status(200).send(record)

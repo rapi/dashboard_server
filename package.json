@@ -21,7 +21,9 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "test": "mocha server/test/index.js --timeout 150000",
-    "test:providers": "mocha server/test/index.js --timeout 150000 --module=providers"
+    "test:providers": "mocha server/test/index.js --timeout 150000 --module=providers",
+    "test:fetchIcons": "mocha server/test/index.js --timeout 150000 --module=fetchIcons",
+    "test:insertNew": "mocha server/test/index.js --timeout 150000 --module=insertNew"
   },
   "repository": {
     "type": "git",

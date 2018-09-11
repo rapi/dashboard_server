@@ -3,14 +3,24 @@ const fetch = require('node-fetch');
 module.exports.daily = function(name) {
   return fetch('https://api.iextrading.com/1.0/stock/'+name+'/chart/6m')
             .then(e=>e.json())
-            .then(e=>format(e))
-            // .then(e=>console.log(e))
+            .then(e=>{
+
+              return format(e)
+            })
+            .catch(e=>console.log('[-] '+name))
 }
 module.exports.search = function(name) {
-    return fetch('hhttps://api.iextrading.com/1.0/stock/'+name+'/chart/6m')
+    return fetch('https://api.iextrading.com/1.0/stock/'+name+'/chart/6m')
               .then(e=>e.json())
 }
-let format= (arr)=> arr.reduce((ret,current)=>ret.concat({
+let format= (arr)=> arr.reduce((ret,current)=>(
+  current.open &&
+  current.date &&
+  current.high &&
+  current.low &&
+  current.close &&
+  current.volume
+)? ret.concat({
         time:   new Date(current.date),
         open:   parseFloat(current.open),
         high:   parseFloat(current.high),
@@ -18,4 +28,4 @@ let format= (arr)=> arr.reduce((ret,current)=>ret.concat({
         close:   parseFloat(current.close),
         volume:   parseFloat(current.volume),
       }
-),[])
+):ret,[])
