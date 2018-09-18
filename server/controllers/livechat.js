@@ -2,12 +2,20 @@ module.exports = class livechat {
   constructor(app){
     this.app=app
     this.clients={}
-    this.chatid=469366310,
+    this.chatid=app.env.TELEGRAM_CHATID,
+    this.closeWS=this.closeWS.bind(this)
     this.app.bot.on('message', (msg) => {
       msg=msg.text.split(' ')
       let token=msg[0].replace('@','')
       this.sendClient(token,msg.slice(1).join(' '))
     });
+  }
+  closeWS(ws){
+    this.clients[ws.auth]=setTimeout(()=>{
+      this.sendServer(ws,'Left the page');
+      delete this.clients[ws.auth];
+    },1000*10)
+    console.log('close '+ws.auth)
   }
   message(ws,message){
       switch (message.action) {
@@ -16,8 +24,7 @@ module.exports = class livechat {
         case 'enter':
           if(!this.clients[ws.auth])
             this.enter(ws)
-            clearTimeout(this.clients[ws.auth])
-            this.clients[ws.auth]=setTimeout(()=>delete this.clients[ws.auth],1000*60*10)
+          clearTimeout(this.clients[ws.auth])
           break;
         default:
           console.log(message)

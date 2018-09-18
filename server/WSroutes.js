@@ -7,10 +7,13 @@ module.exports = function(app) {
   //
 
 
-  app.ws.getWss().on('connection', function(ws,req) {
-    ws.auth=req.params.user;
-  });
   router.ws('/:user', function(ws, res) {
+    ws.auth=res.params.user
+    ws.on('close', function() {
+      for(let i in app.controllers)
+        if(app.controllers[i].closeWS)
+          app.controllers[i].closeWS(ws)
+    })
     ws.on('message', function(msg) {
       try {
         msg=JSON.parse(msg);
