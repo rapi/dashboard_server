@@ -51,34 +51,13 @@ module.exports = function(app) {
     app.controllers['Stock']._list(req, res)
   })
 
-  // Upload logo
-  // router.post('/symbols/logo', upload.single('logo'), function(req, res) {
-  //   app.controllers['Symbols']._upload_logo(req, res)
-  //
-  // })
-  //
-  // Add
-  // router.post('/symbols', function(req, res) {
-  //   app.controllers['Symbols']._add(req, res)
-  // })
-  //
-  // Update
-  // router.post('/symbols/:id', function(req, res) {
-  //   app.controllers['Symbols']._update(req, res)
-  // })
-  //
-  // Delete
-  // router.delete('/symbols/:id', function(req, res) {
-  //   app.controllers['Symbols']._delete(req, res)
-  // })
 
-  //************************************
-  //**************PROVIDERS***************
-  //************************************
 
-  //Find Symbol in all providers
-  // router.get('/providers/search/:symbol', function(req, res) {
-  //   app.controllers['Providers']._searchSymbol(req, res)
-  // })
+    router.get('/register/', function(req, res) {
+      app.controllers['User']._register(req, res)
+    })
+    router.get('/login/', function(req, res) {
+      app.controllers['User']._login(req, res)
+    })
   return router
 }

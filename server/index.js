@@ -9,11 +9,11 @@ var express = require('express'),
     TelegramBot = require('node-telegram-bot-api'),
     app = {
       fs: require('fs-extra'),
-      env:{...require('dotenv').config().parsed}
-    }
-
-app.fs.mkdirs(app.env.TMP_DIR)
-app.fs.emptyDir(app.env.TMP_DIR)
+      env:{...require('dotenv').config().parsed},
+      session:require('express-session'),
+      passport:require('passport')
+    },
+    FileStore =require('session-file-store')(app.session)
 app.models = require('require-all')({
   dirname: __dirname + '/models/'
 });
@@ -43,11 +43,24 @@ app.ws = require('express-ws')(app.express);
 
 app.db = require('./db.js')(app);
 
+app.express.use(app.session({
+  store: new FileStore(),
+  secret: 'test',
+  name: 'test',
+  proxy: true,
+  resave: true,
+  saveUninitialized: true
+}));
+app.express.use(app.passport.initialize());
+app.express.use(app.passport.session());
 //Express use libraries
 app.express.use(bodyParser.urlencoded({ extended: true }))
 
 // parse json
 app.express.use(bodyParser.json())
+
+
+
 //routes
 app.express.use('/api', require('./routes')(app))
 app.express.use('/api', require('./WSroutes')(app))
