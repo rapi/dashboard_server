@@ -1,8 +1,6 @@
-var express = require('express'),
-  router = express.Router()
-multer = require('multer')
-
-apiResponse = express.Router()
+var router = require('express').Router(),
+    multer = require('multer')
+    apiResponse = require('express').Router()
 module.exports = function(app) {
   //
 

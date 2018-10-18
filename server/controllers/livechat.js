@@ -1,13 +1,13 @@
 module.exports = class livechat {
   constructor(app){
-    this.app=app
-    this.clients={}
-    this.chatid=469366310,
-    this.app.bot.on('message', (msg) => {
-      msg=msg.text.split(' ')
-      let token=msg[0].replace('#','')
-      this.sendClient(token,msg.slice(1).join(' '))
-    });
+    // this.app=app
+    // this.clients={}
+    // this.chatid=469366310,
+    // this.app.bot.on('message', (msg) => {
+    //   msg=msg.text.split(' ')
+    //   let token=msg[0].replace('#','')
+    //   this.sendClient(token,msg.slice(1).join(' '))
+    // });
   }
   message(ws,message){
       switch (message.action) {
