@@ -22,7 +22,7 @@ module.exports = class livechat {
             this.clients[ws.auth]=setTimeout(()=>delete this.clients[ws.auth],1000*60*10)
           break;
         default:
-          console.log(message)
+          app.log(message)
 
       }
   }

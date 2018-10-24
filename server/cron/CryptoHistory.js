@@ -8,8 +8,8 @@ module.exports = function(app) {
       // app.models.cryptoPairs.find({}).sort({lastDailyUpdate: 1}).limit(8).exec(function(_, e) {
       //   for(let i in e){
       //     e[i].updateDailyTicks(app)
-      //       .then(e=>console.log('[Updated]',e.from+e.to))
-      //       .catch(e=>console.log('[ERROR]',e.from+e.to))
+      //       .then(e=>app.log('[Updated]',e.from+e.to))
+      //       .catch(e=>app.log('[ERROR]',e.from+e.to))
       //     }
       // })
     }

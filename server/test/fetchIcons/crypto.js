@@ -16,7 +16,7 @@ module.exports = function(app) {
         for(let i in pairs){
           let file = fs.createWriteStream("images/crypto/"+pairs[i].from+".png");
           request = http.get("https://s2.coinmarketcap.com/static/img/coins/128x128/"+arr[pairs[i].from]+'.png', function(response) {
-            console.log("[+]  "+pairs[i].from)
+            app.log("[+]  "+pairs[i].from)
             response.pipe(file);
             pairs[i].logo=[pairs[i].from+".png"]
             pairs[i].save();

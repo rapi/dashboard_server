@@ -7,7 +7,7 @@ module.exports.daily = function(name) {
 
               return format(e)
             })
-            .catch(e=>console.log('[-] '+name))
+            .catch(e=>app.log('[-] '+name))
 }
 module.exports.search = function(name) {
     return fetch('https://api.iextrading.com/1.0/stock/'+name+'/chart/6m')

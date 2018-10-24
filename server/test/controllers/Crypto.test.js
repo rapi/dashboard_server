@@ -9,7 +9,7 @@ module.exports = function(app) {
     request(app.config.http.host + '/api/crypto/history/BTC/USD', (error, response, body) => {
       response.statusCode.should.be.equal(200);
       response = JSON.parse(body)
-      console.log(response)
+      app.log(response)
       response.should.be.a('array');
       done()
     })

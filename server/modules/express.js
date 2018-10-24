@@ -1,5 +1,7 @@
+const express=require('express')
+var path = require('path');
 module.exports=function(app){
-    app.express=require('express')()
+    app.express=express()
     let port=8080;
     if(app.config.SERVER_PORT)
       port=app.config.SERVER_PORT
@@ -7,21 +9,26 @@ module.exports=function(app){
       dirname:__dirname + '/../routes',
     });
     require('express-ws')(app.express)
-    app.express.use( require('body-parser').json() );       // to support JSON-encoded bodies
-    app.express.use( require('body-parser').urlencoded({     // to support URL-encoded bodies
-      extended: false
-    }));
-    app.log('   -------------ROUTES-------------');
+    // app.express.use(express.static(path.join(__dirname, 'public')));
+
+    require('./expressSession')(app);
+    require('./expressBodyParser')(app);
+    require('./expressPassport')(app);
+    require('./expressPassportFacebook')(app);
+    require('./expressPassportGoogle')(app);
+
     for(let i in app.routes){
       try{
         app.express.use('/api/'+i,app.routes[i](app));
-        app.log('\n   [+]  '+i);
+        app.log('[ROUTES]',i);
       }
       catch(e){
-        app.error('\n   [-]  '+i,e);
+        app.error('[ROUTES]',i,e);
       }
     }
+    // app.express.get('/', function(req,res){console.log(req.session,req.user);res.send(req.session)} );
+
     app.express.listen(port, function () {
-      console.log('Express server start on port '+port+'!');
+      app.log('[EXPRESS]','server start on port '+port+'!');
     });
 }

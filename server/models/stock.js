@@ -30,7 +30,7 @@ symbolsSchema.methods.updateDailyTicks = function(app) {
         this.save();
         return this
       })
-  else console.log('No provider `'+this.providers[0]+'`for '+this.name)
+  else app.log('No provider `'+this.providers[0]+'`for '+this.name)
 }
 Symbols = mongoose.model('Stock', symbolsSchema);
 module.exports = Symbols

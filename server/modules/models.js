@@ -6,5 +6,4 @@ module.exports=function(app){
       //   return new Controller(app);
       // }
     });
-    console.log(app.models.cryptoPairs.find)
 }

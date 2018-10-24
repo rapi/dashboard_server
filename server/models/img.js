@@ -15,7 +15,7 @@ imgSchema = new mongoose.Schema({
  //middle ware in serial
  // imgSchema.pre('save', function preSave(next){
  //   var something = this;
- //   console.log(something)
+ //   app.log(something)
  //   something.updatedAt=Date.now();
  //   next();
  // });

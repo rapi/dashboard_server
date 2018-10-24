@@ -9,7 +9,7 @@ process.argv.forEach(function (val, index, array) {
   if(val.indexOf('--')===0)
   env[val.split('=')[0].replace('--','')]=val.split('=')[1]
 });
-// console.log(env)
+// app.log(env)
 describe('Full test', function() {
   it('Start test', (e) => {
     e()

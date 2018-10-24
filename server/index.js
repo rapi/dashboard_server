@@ -4,16 +4,20 @@ var app={
     'dotenv',
     'mongodb',
     'models',
+    'providers',
+    'cron',
     'controllers',
     'express',
+    // 'passport',
+    // 'passportFacebook',
   ]
 }
 for(let module of app.modules){
     try{
       require('./modules/'+module)(app);
-      app.log('[+]  '+module);
+      app.log('[MODULE]',module);
     }
     catch(e){
-      app.log('[-]  '+module,e);
+      app.error('[MODULE]',module,e);
     }
   }

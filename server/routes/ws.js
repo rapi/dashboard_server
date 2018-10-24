@@ -6,7 +6,7 @@ module.exports = function(app) {
 
 
   router.ws('/:user', function(ws, res) {
-    ws.auth=res.params.user
+/*    ws.auth=res.params.user
     ws.on('close', function() {
       for(let i in app.controllers)
         if(app.controllers[i].closeWS)
@@ -26,9 +26,9 @@ module.exports = function(app) {
       try {
         app.controllers[msg.module].message(ws,msg.data)
       } catch (e) {
-        console.log(e)
+        app.log(e)
       }
-    });
+    });*/
   })
   return router
 }

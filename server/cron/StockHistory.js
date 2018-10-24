@@ -8,8 +8,8 @@ module.exports = function(app) {
       app.models.stock.find({enabled:true}).sort({lastDailyUpdate: 1}).limit(100).exec(function(_, e) {
         for(let i in e){
           e[i].updateDailyTicks(app)
-            .then(e=>console.log('[Updated] ',e.name,'[',e.dailyHistory.length+']'))
-            .catch(e=>console.log('[ERROR]  ',e.name
+            .then(e=>app.log('[Updated] ',e.name,'[',e.dailyHistory.length+']'))
+            .catch(e=>app.log('[ERROR]  ',e.name
           ))
           }
       })

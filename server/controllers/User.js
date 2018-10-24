@@ -4,7 +4,7 @@ module.exports=class Login{
   }
   _login(req,res){
     // req.session.test=2
-    console.log(req.session)
+    app.log(req.session)
     // req.session.save()
     // this.app.models.user.authenticate('admin','admin',function(err,result){
     //   if(err)
@@ -14,7 +14,7 @@ module.exports=class Login{
     // })
   }
   _register(req,res){
-    console.log(req.user)
+    app.log(req.user)
       this.app.models.user.register({username:'admin',active:true},'admin',function(err){
 
     })
