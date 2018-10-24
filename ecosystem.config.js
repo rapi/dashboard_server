@@ -21,7 +21,7 @@ module.exports = {
     production : {
       user : 'rapi',
       host : 'rapi.md',
-      ref  : 'origin/master',
+      ref  : 'origin/dev',
       repo : 'git@github.com:rapi/dashboard_server',
       path : '/home/rapi/dashboard_server',
       'post-deploy' : 'npm install && pm2 reload ecosystem.config.js --env production'
