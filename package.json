@@ -35,6 +35,7 @@
   },
   "scripts": {
     "start": "pm2-dev start server/index.js",
+    "deploy:setup": "pm2 deploy production setup",
     "deploy": "pm2 deploy production update;pm2 deploy production exec 'pm2 reload all'",
     "test": "mocha server/test/index.js --timeout 150000",
     "test:providers": "mocha server/test/index.js --timeout 150000 --module=providers",
